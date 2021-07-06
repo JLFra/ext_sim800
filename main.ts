@@ -66,6 +66,4 @@ namespace sim8000{
         bufr.setNumber(NumberFormat.UInt8LE, 2, val+1)
         serial.writeBuffer(bufr)
     }
-
-   
 }
