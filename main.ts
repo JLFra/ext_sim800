@@ -40,9 +40,9 @@ namespace sim8000{
         return serial.readUntil(serial.delimiters(Delimiters.NewLine));
     }
 
-    //% block="Envoi auto code PIN=$code_pin donnée=$donnee"
+    //% block="Envoi Tel=$num_tel code PIN=$code_pin donnée=$donnee"
     //% donnee.defl='essai'
-    export function envoi_auto_donnee(code_pin: string, donnee: string): void {
+    export function envoi_auto_donnee(num_tel: string, code_pin: string, donnee: string): void {
         serial.writeLine("AT+CPIN="+code_pin)
         let recept=""
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
@@ -52,7 +52,7 @@ namespace sim8000{
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
         basic.showString("txt:"+recept)
-        serial.writeLine("AT+CMGS=\"+33628744603\"")
+        serial.writeLine("AT+CMGS=\""+num_tel+"\"")
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
         basic.showString("tel:"+recept)
