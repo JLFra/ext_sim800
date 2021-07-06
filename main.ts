@@ -27,15 +27,45 @@ namespace sim8000{
         }
         
     }
-    //% block="Envoi $donnee"
+    //% block="Envoi commande AT $donnee"
     //% donnee.defl='essai'
-    export function envoi_donnee(donnee: string): void {
+    export function envoi_AT_donnee(donnee: string): void {
         serial.writeLine(donnee)
     }
 
     //% block="Donnee reçue"
     export function donnee_recue(): string {
-        serial.readUntil(serial.delimiters(Delimiters.NewLine))
+        let recept=""
+        recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
         return serial.readUntil(serial.delimiters(Delimiters.NewLine));
     }
+
+    //% block="Envoi auto code PIN=$code_pin donnée=$donnee"
+    //% donnee.defl='essai'
+    export function envoi_auto_donnee(code_pin: string, donnee: string): void {
+        serial.writeLine("AT+CPIN="+code_pin)
+        let recept=""
+        recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
+        recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
+        basic.showString("PIN:"+recept)
+        serial.writeLine("AT+CMGF=1")
+        recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
+        recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
+        basic.showString("txt:"+recept)
+        serial.writeLine("AT+CMGS=\"+33628744603\"")
+        recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
+        recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
+        basic.showString("tel:"+recept)
+        serial.writeLine(donnee)
+        recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
+        recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
+        basic.showString("Dat:"+recept)
+        let bufr = pins.createBuffer(4);
+        let val = 26
+        bufr.setNumber(NumberFormat.UInt8LE, 1, val)
+        bufr.setNumber(NumberFormat.UInt8LE, 2, val+1)
+        serial.writeBuffer(bufr)
+    }
+
+   
 }
