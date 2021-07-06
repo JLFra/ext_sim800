@@ -30,11 +30,12 @@ namespace sim8000{
     //% block="Envoi $donnee"
     //% donnee.defl='essai'
     export function envoi_donnee(donnee: string): void {
-        serial.writeString(donnee+"#")
+        serial.writeLine(donnee)
     }
 
     //% block="Donnee reçue"
     export function donnee_recue(): string {
-        return serial.readUntil(serial.delimiters(Delimiters.Hash));
+        serial.readUntil(serial.delimiters(Delimiters.NewLine))
+        return serial.readUntil(serial.delimiters(Delimiters.NewLine));
     }
 }
