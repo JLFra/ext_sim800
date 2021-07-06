@@ -15,8 +15,8 @@ namespace sim8000{
         basic.pause(2000)
         basic.showIcon(IconNames.SmallSquare)
         let recept_data = ""
-        serial.writeString("AT")
-        recept_data = serial.readUntil(serial.delimiters(Delimiters.CarriageReturn))
+        serial.writeLine("AT")
+        recept_data = serial.readUntil(serial.delimiters(Delimiters.NewLine))
         basic.showString(recept_data)
         basic.pause(1000)
         if (recept_data == "OK") { 
