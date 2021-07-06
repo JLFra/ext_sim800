@@ -24,9 +24,15 @@ namespace sim8000{
         else {
             basic.showIcon(IconNames.Square)
             basic.pause(500)
-        }
-        
+        }  
     }
+
+    //% block="Reponse auto $donnee"
+    //% donnee.defl='essai'
+    export function reponse_auto_donnee(donnee: string): void {
+        serial.writeLine(donnee)
+    }
+
     //% block="Envoi commande AT $donnee"
     //% donnee.defl='essai'
     export function envoi_AT_donnee(donnee: string): void {
