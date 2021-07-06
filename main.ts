@@ -20,7 +20,7 @@ namespace sim8000{
         recept_data = serial.readUntil(serial.delimiters(Delimiters.NewLine))
         basic.showString(recept_data)
         basic.showNumber(recept_data.length)
-        if (recept_data == "OK") { 
+        if (recept_data.substr(0,2) == "OK") { 
             basic.showString("C")
         }
         else {
