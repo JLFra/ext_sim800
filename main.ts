@@ -12,13 +12,13 @@ namespace sim8000{
         Rx,
         BaudRate.BaudRate9600
         )
-        basic.pause(2000)
+        basic.pause(1000)
         basic.showIcon(IconNames.SmallSquare)
         let recept_data = ""
         serial.writeLine("AT")
         recept_data = serial.readUntil(serial.delimiters(Delimiters.NewLine))
+        recept_data = serial.readUntil(serial.delimiters(Delimiters.NewLine))
         basic.showString(recept_data)
-        basic.pause(1000)
         if (recept_data == "OK") { 
             basic.showString("C")
         }
