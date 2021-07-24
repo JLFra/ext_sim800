@@ -46,30 +46,33 @@ namespace sim8000{
         return serial.readUntil(serial.delimiters(Delimiters.NewLine));
     }
 
-    //% block="Envoi Tel=$num_tel code PIN=$code_pin donnée=$donnee"
+    //% block="Envoi Tel=$num_tel donnée=$donnee"
     //% donnee.defl='essai'
-    export function envoi_auto_donnee(num_tel: string, code_pin: string, donnee: string): void {
-        serial.writeLine("AT+CPIN="+code_pin)
+    export function envoi_auto_donnee(num_tel: string, donnee: string): void {
+        serial.writeLine("AT+CPIN=?")
         let recept=""
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
-        basic.showString("PIN:"+recept)
+        basic.showString(recept)
         serial.writeLine("AT+CMGF=1")
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
-        basic.showString("txt:"+recept)
+        basic.showString("CMGF:"+recept)
         serial.writeLine("AT+CMGS=\""+num_tel+"\"")
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
-        basic.showString("tel:"+recept)
+        basic.showString(recept)
         serial.writeLine(donnee)
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
-        basic.showString("Dat:"+recept)
+        basic.showString(recept)
         let bufr = pins.createBuffer(4);
         let val = 26
         bufr.setNumber(NumberFormat.UInt8LE, 1, val)
         bufr.setNumber(NumberFormat.UInt8LE, 2, val+1)
         serial.writeBuffer(bufr)
+        recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
+        recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
+        basic.showString(recept)
     }
 }
