@@ -67,7 +67,7 @@ namespace sim8000{
         bufr.setNumber(NumberFormat.UInt8LE, 0, val)
         serial.writeBuffer(bufr)
         basic.pause(1000)
-        for (let i = 0; i < 6; i++) {
+        for (let i = 0; i < 5; i++) {
             recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
         }
         basic.showString(recept)
