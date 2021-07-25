@@ -63,7 +63,6 @@ namespace sim8000{
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
         basic.showString("CMGF:"+recept)
         serial.writeLine('AT+CMGS="'+num_tel+'"')
-        recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
         basic.pause(1000)
         /*recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
         recept = serial.readUntil(">")
@@ -76,6 +75,9 @@ namespace sim8000{
         let val = 26
         bufr.setNumber(NumberFormat.UInt8LE, 0, val)
         serial.writeBuffer(bufr)
+        basic.pause(1000)
+        recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
+        basic.showString(recept)
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
         basic.showString(recept)
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
