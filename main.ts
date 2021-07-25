@@ -28,9 +28,8 @@ namespace sim8000{
         }  
     }
 
-    //% block="Reponse auto $donnee"
-    //% donnee.defl='essai'
-    export function reponse_auto_donnee(donnee: string): string {
+    //% block="Reponse SMS"
+    export function reponse_auto_donnee(): string {
         let recept = ""
         serial.writeString('AT+CMGF=1')
         let bufr = pins.createBuffer(1);
@@ -53,10 +52,14 @@ namespace sim8000{
     //% block="Envoi commande AT $donnee"
     //% donnee.defl='essai'
     export function envoi_AT_donnee(donnee: string): void {
-        serial.writeLine(donnee)
+        serial.writeString(donnee)
+        let bufr = pins.createBuffer(1);
+        let val = 13
+        bufr.setNumber(NumberFormat.UInt8LE, 0, val)
+        serial.writeBuffer(bufr)
     }
 
-    //% block="Donnee reçue"
+    //% block="Donnee reçue AT"
     export function donnee_recue(): string {
         let recept=""
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
