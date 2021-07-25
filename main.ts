@@ -51,23 +51,6 @@ namespace sim8000{
     //% donnee.defl='essai'
     export function envoi_auto_donnee(num_tel: string, donnee: string): void {
         let recept = ""
-        /*serial.writeLine("AT+CPIN?")
-        basic.pause(1000)
-        recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
-        basic.showString(recept)
-        recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
-        basic.showString(recept)
-        recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
-        basic.showString(recept)
-        recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
-        basic.showString(recept)
-        /*recept=recept.substr(7, 5)
-        basic.showString(recept)*/
-        serial.writeLine("AT")
-        recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
-        recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
-        basic.showString(recept)
-        basic.pause(1000)
         basic.showNumber(1)
         serial.writeString('AT+CMGF=1')
         let bufr = pins.createBuffer(1);
@@ -81,14 +64,9 @@ namespace sim8000{
         serial.writeLine('AT+CMGS="'+num_tel+'"')
         basic.showNumber(3)
         basic.pause(1000)
-        /*recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
-        recept = serial.readUntil(">")
-        basic.showString(recept)*/
         serial.writeString(donnee)
         basic.pause(1000)
         basic.showNumber(4)
-        /*recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
-        basic.showString(recept)*/
         bufr = pins.createBuffer(1);
         val = 26
         bufr.setNumber(NumberFormat.UInt8LE, 0, val)
