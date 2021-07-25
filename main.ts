@@ -52,6 +52,7 @@ namespace sim8000{
         let recept = ""
         serial.writeLine("AT")
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
+        basic.showString(recept)
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
         basic.showString(recept)
         /*recept=recept.substr(7, 5)
