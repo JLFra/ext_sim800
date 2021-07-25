@@ -68,10 +68,8 @@ namespace sim8000{
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
         basic.showString(recept)
         basic.showNumber(1)
-        serial.writeString('AT+CMGF=1')
+        serial.writeLine('AT+CMGF=1')
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
-        /*basic.showString(recept)*/
-        serial.writeLine("")
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
         basic.showString(recept)
         basic.showNumber(2)
