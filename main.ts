@@ -30,8 +30,24 @@ namespace sim8000{
 
     //% block="Reponse auto $donnee"
     //% donnee.defl='essai'
-    export function reponse_auto_donnee(donnee: string): void {
-        serial.writeLine(donnee)
+    export function reponse_auto_donnee(donnee: string): string {
+        let recept = ""
+        serial.writeString('AT+CMGF=1')
+        let bufr = pins.createBuffer(1);
+        let val = 13
+        bufr.setNumber(NumberFormat.UInt8LE, 0, val)
+        serial.writeBuffer(bufr)
+        recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
+        recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
+        serial.writeString('AT+CNMI=1,2,0,0,0')
+        serial.writeBuffer(bufr)
+        recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
+        basic.showString(recept)
+        recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
+        basic.showString(recept)
+        recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
+        basic.showString(recept)
+        return recept
     }
 
     //% block="Envoi commande AT $donnee"
