@@ -52,12 +52,17 @@ namespace sim8000{
     export function envoi_auto_donnee(num_tel: string, donnee: string): void {
         let recept = ""
         serial.writeLine("AT+CPIN?")
+        basic.pause(1000)
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
+        basic.showString(recept)
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
+        basic.showString(recept)
+        recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
+        basic.showString(recept)
         recept=recept.substr(7, 5)
         basic.showString(recept)
-        basic.pause(1000)
         serial.writeLine("AT+CMGF=1")
+        basic.pause(1000)
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
         basic.showString(recept)
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
