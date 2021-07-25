@@ -5,8 +5,8 @@ namespace sim8000{
     //% Rx.defl=SerialPin.P0 Tx.defl=SerialPin.P14
     export function connect_lora(Rx: SerialPin, Tx: SerialPin): void {
         basic.showIcon(IconNames.Asleep)
-        serial.setRxBufferSize(100)
-        serial.setTxBufferSize(100)
+        serial.setRxBufferSize(200)
+        serial.setTxBufferSize(200)
         serial.redirect(
         Tx,
         Rx,
