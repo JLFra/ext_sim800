@@ -69,7 +69,11 @@ namespace sim8000{
         basic.showString(recept)
         basic.pause(1000)
         basic.showNumber(1)
-        serial.writeLine('AT+CMGF=1')
+        serial.writeString('AT+CMGF=1')
+        let bufr = pins.createBuffer(1);
+        let val = 13
+        bufr.setNumber(NumberFormat.UInt8LE, 0, val)
+        serial.writeBuffer(bufr)
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
         basic.showString(recept)
@@ -85,8 +89,8 @@ namespace sim8000{
         basic.showNumber(4)
         /*recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
         basic.showString(recept)*/
-        let bufr = pins.createBuffer(1);
-        let val = 26
+        bufr = pins.createBuffer(1);
+        val = 26
         bufr.setNumber(NumberFormat.UInt8LE, 0, val)
         serial.writeBuffer(bufr)
         basic.pause(1000)
