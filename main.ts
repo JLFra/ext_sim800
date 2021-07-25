@@ -20,6 +20,7 @@ namespace sim8000{
         recept_data = serial.readUntil(serial.delimiters(Delimiters.NewLine))
         if (recept_data.substr(0,2) == "OK") { 
             basic.showString("C")
+            basic.pause(500)
         }
         else {
             basic.showIcon(IconNames.Square)
@@ -52,8 +53,10 @@ namespace sim8000{
         let recept = ""
         serial.writeLine("AT+CPIN?")
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
+        basic.showIcon(IconNames.Happy)
         basic.showString(recept)
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
+        basic.showIcon(IconNames.Sad)
         basic.showString(recept)
         /*recept=recept.substr(7, 5)
         basic.showString(recept)*/
