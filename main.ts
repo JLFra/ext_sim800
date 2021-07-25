@@ -50,9 +50,7 @@ namespace sim8000{
     //% donnee.defl='essai'
     export function envoi_auto_donnee(num_tel: string, donnee: string): void {
         let recept = ""
-        basic.showIcon(IconNames.Happy)
-        serial.writeLine("AT")
-        basic.pause(1000)
+        serial.writeLine("AT+CPIN?")
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
         basic.showString(recept)
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
