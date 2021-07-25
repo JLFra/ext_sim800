@@ -20,7 +20,7 @@ namespace sim8000{
         recept_data = serial.readUntil(serial.delimiters(Delimiters.NewLine))
         if (recept_data.substr(0,2) == "OK") { 
             basic.showString("C")
-            basic.pause(500)
+            basic.pause(1000)
         }
         else {
             basic.showIcon(IconNames.Square)
@@ -64,7 +64,7 @@ namespace sim8000{
         /*recept=recept.substr(7, 5)
         basic.showString(recept)*/
         basic.showNumber(1)
-        serial.writeLine("AT+CMGF=1")
+        serial.writeLine('AT+CMGF=1')
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
         basic.showString(recept)
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
