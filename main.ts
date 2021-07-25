@@ -38,6 +38,7 @@ namespace sim8000{
         serial.writeBuffer(bufr)
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
+        basic.showString(recept)
         serial.writeString('AT+CNMI=1,2,0,0,0')
         serial.writeBuffer(bufr)
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
