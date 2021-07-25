@@ -49,13 +49,13 @@ namespace sim8000{
     //% block="Envoi Tel=$num_tel donnée=$donnee"
     //% donnee.defl='essai'
     export function envoi_auto_donnee(num_tel: string, donnee: string): void {
-        serial.writeLine("AT+CPIN=?")
-        let recept=""
+        let recept = ""
+        serial.writeLine("AT")
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
         basic.showString(recept)
-        recept=recept.substr(7, 5)
-        basic.showString(recept)
+        /*recept=recept.substr(7, 5)
+        basic.showString(recept)*/
         serial.writeLine("AT+CMGF=1")
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
