@@ -70,6 +70,5 @@ namespace sim8000{
         for (let i = 0; i < 5; i++) {
             recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
         }
-        basic.showString(recept)
     }
 }
