@@ -3,6 +3,7 @@ namespace sim8000{
     //% block="Connexion au système SIM8000 || RX $Rx TX $Tx"
     //% expandableArgumentMode="toggle"
     //% Rx.defl=SerialPin.P0 Tx.defl=SerialPin.P14
+    let num_tel_sms ="0"
     export function connect_lora(Rx: SerialPin, Tx: SerialPin): void {
         basic.showIcon(IconNames.Asleep)
         serial.setRxBufferSize(200)
@@ -46,10 +47,15 @@ namespace sim8000{
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
-        basic.showString(recept.substr(10, 9))
+        num_tel_sms=recept.substr(10, 9)
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
         recept = recept.substr(0, recept.length-1)
         return recept
+    }
+
+    //% block="numéro tel SMS reçu"
+    export function numero_tel_sms(): string {
+        return num_tel_sms
     }
 
     //% block="Envoi commande AT $donnee"
