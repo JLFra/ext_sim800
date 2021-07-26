@@ -34,21 +34,35 @@ namespace sim8000{
         serial.writeString('AT+CMGF=1')
         let bufr = pins.createBuffer(1);
         let val = 13
+
         bufr.setNumber(NumberFormat.UInt8LE, 0, val)
         serial.writeBuffer(bufr)
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
+        basic.showNumber(1)
         basic.showString(recept)
         serial.writeString('AT+CNMI=1,2,0,0,0')
         serial.writeBuffer(bufr)
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
-        while (recept.length<2) {
+        recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
+        basic.showNumber(2)
+        basic.showString(recept)
+        /*while (recept.length<2) {
             recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
-        }
-        basic.showString(recept)
+            i=i+1
+            basic.showNumber(i)
+            basic.showString(recept)
+        }*/
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
+        basic.showNumber(3)
         basic.showString(recept)
+
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
+        basic.showNumber(4)
+        basic.showString(recept)
+        
+        recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
+        basic.showNumber(5)
         basic.showString(recept)
         return recept
     }
