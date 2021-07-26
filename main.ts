@@ -46,10 +46,9 @@ namespace sim8000{
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
-        basic.showString(recept.substr(9, 9))
+        basic.showString(recept.substr(10, 9))
         recept = serial.readUntil(serial.delimiters(Delimiters.NewLine))
-        basic.showNumber(recept.length)
-        basic.showString(recept.substr(1,1))
+        recept = recept.substr(0, recept.length-1)
         return recept
     }
 
